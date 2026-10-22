@@ -1,12 +1,12 @@
 
+import { HomeHero } from '../components/home/HomeHero'
+import { FeaturedProjects } from '../components/home/FeaturedProjects'
+
 export function Home() {
   return (
-    <section className="hero">
-      <h1>DAOVEZ</h1>
-      <p>
-        Desarrollo de software, automatización
-        e inteligencia artificial.
-      </p>
-    </section>
+    <>
+      <HomeHero />
+      <FeaturedProjects />
+    </>
   )
 }
