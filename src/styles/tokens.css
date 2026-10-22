@@ -1,0 +1,35 @@
+:root {
+  /* Colores oficiales DAOVEZ */
+  --color-navy: #1b2632;
+  --color-blue: #2c3b4d;
+  --color-cream: #eee9df;
+  --color-oatmeal: #c9c1b1;
+  --color-orange: #ffb162;
+  --color-terracotta: #a35139;
+
+  /* Colores de uso general */
+  --color-background: var(--color-navy);
+  --color-surface: var(--color-blue);
+  --color-text: var(--color-cream);
+  --color-text-muted: var(--color-oatmeal);
+  --color-accent: var(--color-orange);
+
+  /* Tipografías */
+  --font-body: "Inter", Arial, sans-serif;
+  --font-code: "JetBrains Mono", monospace;
+
+  /* Espaciados */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Dimensiones */
+  --container-width: 1200px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+}
