@@ -1,4 +1,6 @@
 
+import { NavLink } from 'react-router'
+
 const navigation = [
   { label: 'Inicio', href: '/' },
   { label: 'Proyectos', href: '/proyectos' },
@@ -10,15 +12,27 @@ const navigation = [
 export function Header() {
   return (
     <header className="site-header">
-      <a className="site-logo" href="/" aria-label="DAOVEZ - Inicio">
+      <NavLink
+        to="/"
+        className="site-logo"
+        aria-label="DAOVEZ - Inicio"
+      >
         daovez<span>.</span>dev
-      </a>
+      </NavLink>
 
       <nav aria-label="Navegación principal">
         <ul className="site-nav">
           {navigation.map((item) => (
             <li key={item.href}>
-              <a href={item.href}>{item.label}</a>
+              <NavLink
+                to={item.href}
+                end={item.href === '/'}
+                className={({ isActive }) =>
+                  isActive ? 'nav-link active' : 'nav-link'
+                }
+              >
+                {item.label}
+              </NavLink>
             </li>
           ))}
         </ul>
