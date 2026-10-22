@@ -1,5 +1,5 @@
-
-import { ProjectsGrid } from '../components/projects/ProjectGrid'
+﻿
+import { ProjectsGrid } from '../components/projects/ProjectsGrid'
 
 export function Projects() {
   return (
@@ -14,9 +14,9 @@ export function Projects() {
         </h1>
 
         <p className="projects-page-intro">
-          Una selección de aplicaciones, herramientas y proyectos
+          Una selecciÃ³n de aplicaciones, herramientas y proyectos
           personales relacionados con el desarrollo de software,
-          la automatización y la inteligencia artificial.
+          la automatizaciÃ³n y la inteligencia artificial.
         </p>
       </header>
 
@@ -24,3 +24,4 @@ export function Projects() {
     </div>
   )
 }
+
