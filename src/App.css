@@ -1,25 +1,154 @@
 
-/* DAOVEZ Portfolio — Base de la aplicación */
+/* DAOVEZ Portfolio — Layout principal */
 
 #root {
   min-height: 100vh;
+}
+
+.site-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+
+.site-header {
   width: 100%;
+  min-height: 88px;
+  padding: 0 max(24px, calc((100% - 1200px) / 2));
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+
+  border-bottom: 1px solid #ffffff18;
 }
 
-main {
-  width: min(100% - 2rem, var(--container-width));
+.site-logo {
+  color: var(--color-text);
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-logo span {
+  color: var(--color-accent);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+  color: var(--color-accent);
+}
+
+/* Main */
+
+.site-main {
+  width: min(100% - 48px, var(--container-width));
   margin-inline: auto;
-  padding-block: var(--space-16);
+  flex: 1;
 }
 
-h1 {
+.hero {
+  padding-block: clamp(96px, 12vw, 180px);
+}
+
+.hero h1 {
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.hero p {
+  max-width: 700px;
+  margin-top: 32px;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: var(--color-text-muted);
+}
+
+/* Footer */
+
+.site-footer {
+  border-top: 1px solid #ffffff18;
+  padding: 48px max(24px, calc((100% - 1200px) / 2));
+}
+
+.footer-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.footer-brand {
   margin: 0;
   color: var(--color-text);
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  line-height: 1.1;
+  font-weight: 700;
 }
 
-p {
+.footer-content nav {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-content a {
   color: var(--color-text-muted);
-  line-height: 1.7;
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  color: var(--color-accent);
+}
+
+.footer-copyright {
+  margin-top: 48px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-block: 24px;
+    gap: 24px;
+  }
+
+  .site-nav {
+    flex-wrap: wrap;
+    gap: 16px 24px;
+  }
+
+  .hero {
+    padding-block: 80px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav a {
+    transition: none;
+  }
 }
