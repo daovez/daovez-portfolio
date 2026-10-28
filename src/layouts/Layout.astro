@@ -19,7 +19,7 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content={isBlog ? '#f3efe5' : '#24272d'} />
+    <meta name="theme-color" content={isBlog ? '#f3efe5' : '#172629'} />
 
     <title>{title} · DAOVEZ</title>
 
@@ -61,12 +61,13 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
   :root {
     color-scheme: dark;
 
-    --bg: #24272d;
-    --panel: #202328;
+    --bg: #172629;
+    --panel: #213236;
     --text: #f0eee9;
-    --muted: #b7babf;
-    --accent: #94b09a;
-    --line: #3c4045;
+    --muted: #b8c3c1;
+    --accent: #a7c4a0;
+    --line: #35494a;
+    --on-accent: var(--bg);
 
     font-family: 'Space Grotesk', Arial, sans-serif;
     background: var(--bg);
@@ -81,6 +82,7 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     --muted: #60635c;
     --accent: #506e56;
     --line: #d2cdbf;
+    --on-accent: #181c19;
   }
 
   * {
@@ -114,6 +116,9 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
   a:hover {
     color: var(--accent);
   }
+
+  :root:not(.paper-theme) a { color: var(--accent); }
+  :root:not(.paper-theme) a:hover { color: var(--text); }
 
   a:focus-visible,
   button:focus-visible {
@@ -238,8 +243,10 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
 
   .button:hover {
     background: var(--accent);
-    color: #181c19;
+    color: var(--on-accent);
   }
+
+  :root:not(.paper-theme) .button:hover { color: var(--on-accent); }
 
   .status {
     color: var(--muted);
