@@ -1,8 +1,37 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getNotes, formatDate } from '../lib/notes';
+const [latest, ...previous] = await getNotes();
 ---
-<Layout title="Blog" description="Notas de David López Velasco sobre Python, automatización y desarrollo web.">
-<div class="page-head"><h1>Blog</h1><p>Notas sobre Python, automatización y desarrollo web.</p></div>
-<section class="empty"><h2>La primera nota está en camino.</h2><p>Aquí aparecerá la última entrada y, debajo, las notas anteriores de más reciente a más antigua.</p><a class="accent" href="/#works">Ver lo que estoy construyendo ↗</a></section>
+<Layout title="Blog" description="Notas sobre desarrollo web, automatización e IA">
+  <div class="blog">
+    <div class="blog-heading"><h1>Blog</h1><p>Notas sobre desarrollo web, automatización e IA</p></div>
+    {latest ? <>
+      <article class="latest">
+        <h2><a href={`/blog/${latest.id}/`}>{latest.data.title}</a></h2>
+        <time datetime={latest.data.date.toISOString()}>{formatDate(latest.data.date)}</time>
+        <p>{latest.data.description}</p>
+        <a class="accent" href={`/blog/${latest.id}/`}>Leer nota</a>
+      </article>
+      {previous.length > 0 && <ul class="previous" aria-label="Notas anteriores">
+        {previous.map(note => <li><time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time><a href={`/blog/${note.id}/`}>{note.data.title}</a></li>)}
+      </ul>}
+    </> : <div class="empty"><p>Todavía no hay notas publicadas</p><a class="accent" href="/#works">Ver proyectos</a></div>}
+  </div>
 </Layout>
-<style>.empty{border-top:1px solid var(--line);padding:45px 0;max-width:740px}.empty p{max-width:610px}</style>
+<style>
+  .blog { max-width: 700px; margin-inline: auto; padding: 16px 0 40px; overflow-wrap: anywhere; }
+  .blog-heading { margin-bottom: 24px; }
+  h1 { margin-bottom: 10px; }
+  .blog-heading p { margin: 0; font-size: 16px; }
+  .latest { padding-bottom: 24px; }
+  .latest h2 { margin-bottom: 8px; font-size: 24px; }
+  time { color: var(--muted); font: 13px/1.5 Arial, sans-serif; }
+  .latest p { margin: 12px 0; font-size: 16px; }
+  .previous { list-style: none; margin: 0; padding: 0; }
+  .previous li { display: grid; grid-template-columns: 145px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .empty p { margin-bottom: 10px; font-size: 16px; }
+  .latest > a, .empty > a, .previous li > a { display: inline-flex; align-items: center; min-height: 44px; }
+  .previous li { align-items: center; }
+  @media (max-width: 650px) { .blog { padding-top: 10px; } .previous li { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+</style>

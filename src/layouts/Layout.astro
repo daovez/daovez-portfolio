@@ -98,6 +98,9 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     line-height: 1.65;
   }
 
+  main { min-width: 0; padding-bottom: 32px; overflow-wrap: anywhere; }
+  img { height: auto; }
+
   img,
   svg {
     max-width: 100%;
@@ -132,6 +135,7 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     justify-content: space-between;
     gap: 20px;
     padding: 22px 0;
+    flex-wrap: wrap;
   }
 
   .brand {
@@ -145,6 +149,7 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
+    min-height: 44px;
   }
 
 
@@ -161,7 +166,12 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
   }
 
   nav a {
-    padding: 4px 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px 2px;
   }
 
   nav a[aria-current='page'] {
@@ -222,6 +232,8 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     border: 1px solid var(--accent);
     border-radius: 50px;
     font-size: 14px;
+    min-height: 44px;
+    max-width: 100%;
   }
 
   .button:hover {
@@ -245,7 +257,9 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
   }
 
   .prose {
+    width: 100%;
     max-width: 700px;
+    margin-inline: auto;
     padding: 35px 0 60px;
     overflow-wrap: anywhere;
   }
@@ -260,6 +274,7 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
   }
 
   .prose pre {
+    max-width: 100%;
     overflow-x: auto;
     padding: 18px;
     background: var(--panel);
@@ -272,7 +287,12 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     margin-bottom: 25px;
     color: var(--accent);
     font-size: 14px;
+    min-height: 44px;
+    padding-block: 10px;
   }
+
+  .prose pre code { white-space: pre; overflow-wrap: normal; }
+  .prose table { display: block; max-width: 100%; overflow-x: auto; }
 
   /* Accesibilidad */
   .skip-link {
@@ -299,7 +319,7 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
 
     header {
       gap: 14px;
-      padding: 20px 0;
+      padding: 12px 0;
     }
 
     .brand {
@@ -312,7 +332,7 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     }
 
     h1 {
-      font-size: 30px;
+      font-size: clamp(26px, 7vw, 30px);
     }
 
     h2 {
@@ -322,6 +342,9 @@ const logoSrc = isBlog ? '/daovez-wordmark-dark.svg' : '/daovez-wordmark.svg';
     .page-head {
       padding-top: 28px;
     }
+
+    .prose { padding: 20px 0 32px; }
+    .prose pre { padding: 12px; font-size: 13px; }
   }
 
   @media (prefers-reduced-motion: reduce) {

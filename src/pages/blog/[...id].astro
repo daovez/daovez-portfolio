@@ -1,0 +1,33 @@
+---
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getNotes, formatDate } from '../../lib/notes';
+export async function getStaticPaths() {
+  return (await getNotes()).map(note => ({ params: { id: note.id }, props: { note } }));
+}
+const { note } = Astro.props;
+const { Content } = await render(note);
+---
+<Layout title={note.data.title} description={note.data.description}>
+  <article class="note">
+    <a class="back" href="/blog/">Volver al blog</a>
+    <h1>{note.data.title}</h1>
+    <time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time>
+    <div class="note-content"><Content /></div>
+  </article>
+</Layout>
+<style>
+  .note { width: 100%; max-width: 700px; margin-inline: auto; padding: 16px 0 40px; overflow-wrap: anywhere; }
+  .back { margin-bottom: 16px; }
+  h1 { margin-bottom: 10px; }
+  time { color: var(--muted); font: 14px/1.5 Arial, sans-serif; }
+  .note-content { margin-top: 24px; min-width: 0; font: 17px/1.8 Arial, Helvetica, sans-serif; }
+  .note-content :global(h2), .note-content :global(h3) { margin-top: 28px; }
+  .note-content :global(a) { color: var(--accent); text-decoration: underline; }
+  .note-content :global(img) { max-width: 100%; height: auto; }
+  .note-content :global(pre) { max-width: 100%; overflow-x: auto; padding: 16px; border-radius: 6px; font-size: 14px; line-height: 1.6; }
+  .note-content :global(pre code) { white-space: pre; overflow-wrap: normal; }
+  .note-content :global(table) { display: block; max-width: 100%; overflow-x: auto; }
+  .note-content :global(blockquote) { margin-inline: 0; padding-left: 16px; border-left: 2px solid var(--accent); }
+  @media (max-width: 650px) { .note { padding-top: 10px; } .note-content { font-size: 16px; } .note-content :global(pre) { padding: 12px; font-size: 13px; } }
+</style>
