@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="205 140 795 120" width="795" height="120">
+
+  <g transform="translate(-5,0)" fill="none" stroke="#f0eee9" stroke-width="8" stroke-linejoin="miter" stroke-miterlimit="6">
+    <path d="M220 150H260A50 50 0 0 1 260 250H220Z"/>
+    <path d="M356 250L406 150L456 250M371 220H441" stroke-linejoin="bevel"/>
+    <circle cx="552" cy="200" r="50"/>
+    <path d="M648 150L698 250L748 150" stroke-linejoin="bevel"/>
+    <path d="M864 150H794V250H864M794 200H852"/>
+    <path d="M910 150H990L910 250H990"/>
+  </g>
+  <circle cx="547" cy="200" r="9" fill="#94b09a"/>
+
+
+</svg>

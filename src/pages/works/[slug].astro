@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+export function getStaticPaths() {
+return [
+{params:{slug:'automatizador-emails'},props:{title:'Automatizador de emails',description:'Un proyecto para organizar contactos y programar envíos de email con Python.',tech:'Python · Base de datos · Git',goal:'El objetivo es simplificar la gestión de contactos y los envíos programados, sin inteligencia artificial.',next:'Definir el modelo de datos y construir el primer flujo de envío.',repo:''}},
+{params:{slug:'portfolio-daovez'},props:{title:'Portfolio DAOVEZ',description:'Mi espacio personal para mostrar proyectos y compartir lo que aprendo.',tech:'Astro · TypeScript · CSS · Git',goal:'Una web sencilla, rápida y adaptable a móvil, con una presentación, proyectos y un blog independiente.',next:'Añadir capturas reales, documentar los avances y publicar las primeras notas.',repo:'https://github.com/daovez/daovez-portfolio'}}
+];
+}
+const {title,description,tech,goal,next,repo}=Astro.props;
+---
+<Layout title={title} description={description}><article class="prose"><a class="back" href="/#works">← Volver a My Works</a><p class="eyebrow">En desarrollo</p><h1>{title}</h1><p>{description}</p><h2>Objetivo</h2><p>{goal}</p><h2>Tecnologías</h2><p>{tech}</p><h2>Próximos pasos</h2><p>{next}</p>{repo && <a class="button" href={repo} target="_blank" rel="noopener noreferrer">Ver código en GitHub ↗</a>}</article></Layout>
