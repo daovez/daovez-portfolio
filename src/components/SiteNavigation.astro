@@ -1,0 +1,13 @@
+---
+interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+---
+<header class="site-header">
+<nav aria-label="Navegación principal">
+<a href={path === '/about/' ? '/' : '/about/'} aria-current={path === '/about/' ? 'page' : undefined} aria-label={path === '/about/' ? 'Volver al inicio' : 'Sobre mí'}>Sobre mí</a>
+<a href="/blog/">Blog</a>
+</nav>
+</header>

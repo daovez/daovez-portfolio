@@ -14,6 +14,13 @@ const notes = defineCollection({
       await markdownLoader.load(context);
     },
   },
-  schema: z.object({ title: z.string().min(1), date: z.coerce.date(), description: z.string().min(1), draft: z.boolean().default(false) }),
+  schema: z.object({
+    title: z.string().min(1),
+    date: z.coerce.date(),
+    description: z.string().min(1),
+    category: z.string().min(1).default('Desarrollo Web'),
+    readTime: z.string().min(1).default('5 min'),
+    draft: z.boolean().default(false),
+  }),
 });
 export const collections = { notes };

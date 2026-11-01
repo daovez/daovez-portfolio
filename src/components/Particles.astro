@@ -1,0 +1,61 @@
+<canvas class="site-particles" data-site-particles aria-hidden="true"></canvas>
+<script>
+const hero = document.documentElement;
+const canvas = document.querySelector<HTMLCanvasElement>('[data-site-particles]');
+const ctx = canvas?.getContext('2d');
+if (hero && canvas && ctx) {
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  type Point = { x: number; y: number; vx: number; vy: number; size: number; alpha: number };
+  let points: Point[] = [], width = 0, height = 0, frame = 0, last = 0;
+  let cursor: { x: number; y: number } | null = null;
+  const radius = 150;
+  function draw(now: number) {
+    const step = Math.min((now - last) / 16.667 || 1, 2); last = now;
+    ctx!.clearRect(0, 0, width, height);
+    const nearby: Point[] = [];
+    for (const p of points) {
+      if (!motion.matches) {
+        p.x += p.vx * step; p.y += p.vy * step;
+        if (p.x < 0 || p.x > width) { p.vx *= -1; p.x = Math.max(0, Math.min(width, p.x)); }
+        if (p.y < 0 || p.y > height) { p.vy *= -1; p.y = Math.max(0, Math.min(height, p.y)); }
+      }
+      const hover = !motion.matches && cursor
+        ? Math.max(0, 1 - Math.hypot(p.x - cursor.x, p.y - cursor.y) / radius)
+        : 0;
+      ctx!.fillStyle = `rgba(210,225,238,${Math.min(1, p.alpha + hover * .75)})`;
+      ctx!.beginPath(); ctx!.arc(p.x, p.y, p.size + hover * 1.4, 0, Math.PI * 2); ctx!.fill();
+      if (!motion.matches && cursor && Math.hypot(p.x - cursor.x, p.y - cursor.y) < radius) nearby.push(p);
+    }
+    function line(a: {x:number;y:number}, b: {x:number;y:number}, proximity = 1) {
+      const distance = Math.hypot(a.x-b.x,a.y-b.y);
+      if (distance >= radius) return;
+      ctx!.strokeStyle = `rgba(175,201,223,${.25*(1-distance/radius)*proximity})`;
+      ctx!.lineWidth = .5; ctx!.beginPath(); ctx!.moveTo(a.x,a.y); ctx!.lineTo(b.x,b.y); ctx!.stroke();
+    }
+    if (cursor) for (let i=0;i<nearby.length;i++) {
+      line(nearby[i],cursor);
+      for (let j=i+1;j<nearby.length;j++) line(nearby[i],nearby[j],1-Math.max(Math.hypot(nearby[i].x-cursor.x,nearby[i].y-cursor.y),Math.hypot(nearby[j].x-cursor.x,nearby[j].y-cursor.y))/radius);
+    }
+    frame = !motion.matches && !document.hidden ? requestAnimationFrame(draw) : 0;
+  }
+  function restart() { cancelAnimationFrame(frame); frame=0; last=0; if (!document.hidden) draw(performance.now()); }
+  const observer = new ResizeObserver(() => {
+    width = document.documentElement.clientWidth; height = window.innerHeight;
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width*dpr); canvas.height = Math.round(height*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const count = width < 760 ? 35 : 80;
+    points = Array.from({length: count}, () => ({x:Math.random()*width,y:Math.random()*height,vx:(Math.random()-.5)*.16,vy:(Math.random()-.5)*.16,size:.5+Math.random()*.5,alpha:.2+Math.random()*.2}));
+    restart();
+  });
+  const move = (event: PointerEvent) => { if (event.pointerType !== 'mouse') return; cursor={x:event.clientX,y:event.clientY}; };
+  const leave = () => { cursor=null; };
+  hero.addEventListener('pointermove',move); hero.addEventListener('pointerleave',leave);
+  const visibility = () => { cursor=null; restart(); };
+  document.addEventListener('visibilitychange',visibility); motion.addEventListener('change',restart); observer.observe(hero);
+  document.addEventListener('astro:before-swap',()=>{ cancelAnimationFrame(frame); observer.disconnect(); hero.removeEventListener('pointermove',move); hero.removeEventListener('pointerleave',leave); document.removeEventListener('visibilitychange',visibility); motion.removeEventListener('change',restart); },{once:true});
+}
+</script>
+<style>
+.site-particles { position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+</style>

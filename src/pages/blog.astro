@@ -1,37 +1,82 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 import { getNotes, formatDate } from '../lib/notes';
 const [latest, ...previous] = await getNotes();
 ---
 <Layout title="Blog" description="Notas sobre desarrollo web, automatización e IA">
   <div class="blog">
-    <div class="blog-heading"><h1>Blog</h1><p>Notas sobre desarrollo web, automatización e IA</p></div>
-    {latest ? <>
-      <article class="latest">
-        <h2><a href={`/blog/${latest.id}/`}>{latest.data.title}</a></h2>
-        <time datetime={latest.data.date.toISOString()}>{formatDate(latest.data.date)}</time>
-        <p>{latest.data.description}</p>
-        <a class="accent" href={`/blog/${latest.id}/`}>Leer nota</a>
-      </article>
-      {previous.length > 0 && <ul class="previous" aria-label="Notas anteriores">
-        {previous.map(note => <li><time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time><a href={`/blog/${note.id}/`}>{note.data.title}</a></li>)}
-      </ul>}
-    </> : <div class="empty"><p>Todavía no hay notas publicadas</p><a class="accent" href="/#works">Ver proyectos</a></div>}
+    <header class="blog-heading">
+      <a class="back" href="/">← Volver</a>
+      <p class="blog-eyebrow">BLOG // DAOVEZ</p>
+      <h1>Blog</h1>
+      <p>Notas sobre desarrollo web, automatización e IA</p>
+      <nav class="filters" aria-label="Filtrar notas">
+        <button class="filter-active" type="button">Todos</button>
+        <button type="button">Automatización</button>
+        <button type="button">IA &amp; Agentes</button>
+        <button type="button">Desarrollo Web</button>
+        <button type="button">Seguridad</button>
+      </nav>
+    </header>
+    {latest && <article class="latest">
+      <div class="latest-meta"><span>[ DESTACADO // ARQUITECTURA ]</span><span>{latest.data.category}</span></div>
+      <h2><a href={`/blog/${latest.id}/`}>{latest.data.title}</a></h2>
+      <p>{latest.data.description}</p>
+      <div class="note-meta"><time datetime={latest.data.date.toISOString()}>{formatDate(latest.data.date)}</time><span>{latest.data.readTime} de lectura</span><a class="accent" href={`/blog/${latest.id}/`}>Leer nota <span aria-hidden="true">→</span></a></div>
+    </article>}
+    {previous.length > 0 && <section class="notes-index" aria-labelledby="notes-title">
+      <div class="index-heading"><span id="notes-title">Índice técnico</span><span>{previous.length} notas</span></div>
+      <ul class="previous" aria-label="Notas anteriores">
+        {previous.map((note, index) => <li>
+          <span class="note-number">{String(index + 1).padStart(2, '0')}</span>
+          <div class="note-title"><a href={`/blog/${note.id}/`}>{note.data.title}</a><span class="category">{note.data.category}</span></div>
+          <div class="note-details"><time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time><span>{note.data.readTime}</span></div>
+        </li>)}
+      </ul>
+    </section>}
   </div>
 </Layout>
 <style>
-  .blog { max-width: 700px; margin-inline: auto; padding: 16px 0 40px; overflow-wrap: anywhere; }
-  .blog-heading { margin-bottom: 24px; }
-  h1 { margin-bottom: 10px; }
-  .blog-heading p { margin: 0; font-size: 16px; }
-  .latest { padding-bottom: 24px; }
-  .latest h2 { margin-bottom: 8px; font-size: 24px; }
-  time { color: var(--muted); font: 13px/1.5 Arial, sans-serif; }
-  .latest p { margin: 12px 0; font-size: 16px; }
+  .blog { position:relative; width:100%; max-width:none; min-height:100%; margin:0; padding:64px clamp(24px,5vw,72px) 72px; overflow:hidden; overflow-wrap:anywhere; background:rgb(105 112 118 / 3%); border:1px solid rgb(210 215 220 / 8%); border-radius:16px; box-shadow:inset 1px 0 rgb(255 255 255 / 2%), inset 0 1px rgb(255 255 255 / 1.5%); backdrop-filter:blur(8px) saturate(.7); -webkit-backdrop-filter:blur(8px) saturate(.7); }
+  .blog::before { content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.05; background-image:radial-gradient(rgb(255 255 255 / 35%) .55px,transparent .7px),radial-gradient(rgb(0 0 0 / 35%) .55px,transparent .7px); background-position:0 0,3px 4px; background-size:5px 5px,7px 7px; }
+  .blog > * { position:relative; z-index:1; }
+  .blog-heading { margin-bottom: 36px; }
+  .back { display: inline-flex; margin-bottom: 28px; color: var(--muted); font-size: 13px; transition: color .2s; }
+  .back:hover { color: var(--text); }
+  .blog-eyebrow { margin: 0 0 14px; color: var(--accent); font: 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing: .16em; }
+  h1 { margin: 0 0 10px; color: var(--text); font-size: clamp(40px, 5vw, 64px); letter-spacing: -.055em; line-height: 1; }
+  .blog-heading > p:not(.blog-eyebrow) { margin: 0; color: var(--muted); font-size: 17px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .filters button { min-height: 36px; padding: 7px 14px; border: 1px solid rgb(255 255 255 / 10%); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; transition: border-color .2s, color .2s, background-color .2s; }
+  .filters button:hover, .filters button:focus-visible, .filters .filter-active { border-color: rgb(255 255 255 / 25%); background: rgb(255 255 255 / 5%); color: var(--text); }
+  .latest { padding: 30px 32px 26px; border: 1px solid rgb(255 255 255 / 10%); border-radius: 16px; background: rgb(23 25 27 / 40%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: border-color .2s; }
+  .latest:hover { border-color: rgb(255 255 255 / 25%); }
+  .latest-meta, .note-meta, .index-heading, .note-details { display: flex; align-items: center; gap: 16px; color: var(--muted); font-size: 12px; }
+  .latest-meta { justify-content: space-between; color: var(--accent); font: 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing: .08em; }
+  .latest h2 { max-width: 700px; margin: 22px 0 10px; font-size: clamp(26px, 3.2vw, 42px); letter-spacing: -.04em; line-height: 1.1; }
+  .latest h2 a:hover { color: var(--text); }
+  .latest > p { max-width: 640px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; }
+  .note-meta { margin-top: 26px; }
+  time { color: var(--muted); font: 12px/1.5 'Space Grotesk', sans-serif; }
+  .note-meta a { margin-left: auto; }
+  .notes-index { margin-top: 48px; }
+  .index-heading { justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid rgb(255 255 255 / 10%); color: var(--text); font: 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing: .12em; text-transform: uppercase; }
+  .index-heading span:last-child { color: var(--muted); }
   .previous { list-style: none; margin: 0; padding: 0; }
-  .previous li { display: grid; grid-template-columns: 145px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
-  .empty p { margin-bottom: 10px; font-size: 16px; }
-  .latest > a, .empty > a, .previous li > a { display: inline-flex; align-items: center; min-height: 44px; }
-  .previous li { align-items: center; }
-  @media (max-width: 650px) { .blog { padding-top: 10px; } .previous li { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+  .previous li { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 18px; padding: 20px 0; border-bottom: 1px solid rgb(255 255 255 / 10%); transition: border-color .2s, transform .2s; }
+  .previous li:hover { border-color: rgb(255 255 255 / 22%); transform: translateX(3px); }
+  .note-number { color: var(--accent); font: 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .note-title { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .note-title a { color: var(--text); font-size: 16px; }
+  .category { padding: 4px 9px; border: 1px solid rgb(255 255 255 / 10%); border-radius: 999px; color: var(--muted); font-size: 10px; }
+  .note-details { justify-content: flex-end; white-space: nowrap; }
+  @media (max-width: 650px) {
+    .blog { padding: 36px 20px 48px; }
+    .latest { padding: 22px 20px; }
+    .latest-meta { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .note-meta { align-items: flex-start; flex-wrap: wrap; }
+    .note-meta a { width: 100%; margin-left: 0; }
+    .previous li { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; }
+    .note-details { grid-column: 2; justify-content: flex-start; }
+  }
 </style>
