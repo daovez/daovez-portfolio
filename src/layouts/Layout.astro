@@ -8,6 +8,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog');
 const path = Astro.url.pathname;
 const isHome = path === "/";
 const isAbout = /^\/about\/?$/.test(path);
+const canonicalUrl = Astro.site ? new URL(path, Astro.site) : undefined;
 ---
 <!doctype html>
 <html lang="es" class:list={{ 'paper-theme': isBlog }}>
@@ -15,6 +16,11 @@ const isAbout = /^\/about\/?$/.test(path);
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} /><meta name="theme-color" content="#151719" />
 <title>{title} · DAOVEZ</title><link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+{canonicalUrl && <link rel="canonical" href={canonicalUrl.href} />}
+<meta property="og:title" content={`${title} · DAOVEZ`} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+{canonicalUrl && <meta property="og:url" content={canonicalUrl.href} />}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" />

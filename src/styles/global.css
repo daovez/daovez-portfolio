@@ -283,3 +283,18 @@ a:hover { color: var(--accent); }
 body:has(.about-shell) > .site-particles { z-index:0; }
 .about-shell { z-index:1; }
 .about-shell .site-header { background:var(--bg); }
+
+@media (min-width:761px) and (max-width:900px) {
+  body:has(.home-shell), body:has(.about-shell) {
+    display:block;
+    padding:22px 16px;
+  }
+  .portfolio-shell:is(.home-shell, .about-shell) {
+    min-height:calc(100svh - 44px);
+    aspect-ratio:auto;
+  }
+  .portfolio-shell:is(.home-shell, .about-shell) > main {
+    height:auto;
+    min-height:0;
+  }
+}

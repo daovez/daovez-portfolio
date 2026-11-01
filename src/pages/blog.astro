@@ -11,14 +11,14 @@ const [latest, ...previous] = await getNotes();
       <h1>Blog</h1>
       <p>Notas sobre desarrollo web, automatización e IA</p>
       <nav class="filters" aria-label="Filtrar notas">
-        <button class="filter-active" type="button">Todos</button>
-        <button type="button">Automatización</button>
-        <button type="button">IA &amp; Agentes</button>
-        <button type="button">Desarrollo Web</button>
-        <button type="button">Seguridad</button>
+        <button class="filter-active" type="button" data-note-filter="Todos" aria-pressed="true">Todos</button>
+        <button type="button" data-note-filter="Automatización" aria-pressed="false">Automatización</button>
+        <button type="button" data-note-filter="IA &amp; Agentes" aria-pressed="false">IA &amp; Agentes</button>
+        <button type="button" data-note-filter="Desarrollo Web" aria-pressed="false">Desarrollo Web</button>
+        <button type="button" data-note-filter="Seguridad" aria-pressed="false">Seguridad</button>
       </nav>
     </header>
-    {latest && <article class="latest">
+    {latest && <article class="latest" data-note-category={latest.data.category}>
       <div class="latest-meta"><span>[ DESTACADO // ARQUITECTURA ]</span><span>{latest.data.category}</span></div>
       <h2><a href={`/blog/${latest.id}/`}>{latest.data.title}</a></h2>
       <p>{latest.data.description}</p>
@@ -27,7 +27,7 @@ const [latest, ...previous] = await getNotes();
     {previous.length > 0 && <section class="notes-index" aria-labelledby="notes-title">
       <div class="index-heading"><span id="notes-title">Índice técnico</span><span>{previous.length} notas</span></div>
       <ul class="previous" aria-label="Notas anteriores">
-        {previous.map((note, index) => <li>
+        {previous.map((note, index) => <li data-note-category={note.data.category}>
           <span class="note-number">{String(index + 1).padStart(2, '0')}</span>
           <div class="note-title"><a href={`/blog/${note.id}/`}>{note.data.title}</a><span class="category">{note.data.category}</span></div>
           <div class="note-details"><time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time><span>{note.data.readTime}</span></div>
@@ -80,3 +80,20 @@ const [latest, ...previous] = await getNotes();
     .note-details { grid-column: 2; justify-content: flex-start; }
   }
 </style>
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('[data-note-filter]');
+  const notes = document.querySelectorAll<HTMLElement>('[data-note-category]');
+  filters.forEach((filter) => {
+    filter.addEventListener('click', () => {
+      const category = filter.dataset.noteFilter ?? 'Todos';
+      filters.forEach((item) => {
+        const active = item === filter;
+        item.classList.toggle('filter-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      notes.forEach((note) => {
+        note.hidden = category !== 'Todos' && note.dataset.noteCategory !== category;
+      });
+    });
+  });
+</script>
