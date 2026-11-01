@@ -40,7 +40,7 @@ const [latest, ...previous] = await getNotes();
 <style>
   .blog { width:100%; margin:0; padding:12px 0 48px; overflow-wrap:anywhere; }
   .blog-heading { margin-bottom: 24px; }
-  .back { display: inline-flex; margin-bottom: 12px; color: var(--muted); font-size: 13px; transition: color .2s; }
+  .back { display: flex; width: fit-content; margin: 0 auto 12px; color: var(--muted); font-size: 13px; transition: color .2s; }
   .back:hover { color: var(--text); }
   h1 { margin: 0 0 10px; color: var(--text); font-size: clamp(40px, 5vw, 64px); letter-spacing: -.055em; line-height: 1; }
   .blog-heading > p { margin: 0; color: var(--muted); font-size: 17px; }

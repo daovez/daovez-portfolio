@@ -294,13 +294,11 @@ a:hover { color: var(--accent); }
 /* En About, la tarjeta y la cabecera cubren las partículas exteriores. */
 body:has(.about-shell) > .site-particles { z-index:0; }
 .about-shell { z-index:1; }
-.about-shell .site-header { background:var(--bg); }
 
 
 /* Shared frame keeps navigation stable between Home and About. */
 @media(min-width:1440px) {
-.portfolio-shell.about-shell { height:auto; }
-.portfolio-shell.about-shell > main { flex:auto; height:auto; min-height:calc(88vw * 744 / 1480 - 56px); }
+html body:has(.home-shell),html body:has(.about-shell) { align-content:start; }
 }
 @media(max-width:1439px) {
 html body:has(.home-shell),html body:has(.about-shell) { display:block; align-content:start; padding:max(24px,env(safe-area-inset-top)) max(clamp(12px,4vw,56px),env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(clamp(12px,4vw,56px),env(safe-area-inset-left)); }
