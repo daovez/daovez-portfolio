@@ -16,12 +16,11 @@ const featured = [
 {!isAbout && <img class="hero-portrait" src="/images/david-half-charcoal.png" width="1122" height="1402" alt="Retrato de David López con gafas" fetchpriority="high" decoding="async" />}
 <div class="hero-copy">
 {isAbout ? <>
-<span class="about-eyebrow">01 // SOBRE MÍ</span>
-<h1>Arquitectura de sistemas, automatización con IA y diseño minimalista.</h1>
+<h1>Sobre mí</h1>
 <div class="about-bio">
-<p>Construyo puentes entre tecnología, inteligencia artificial y eficiencia empresarial. Desde <strong><a class="about-studio-link" href="https://daovezstudio.com/" target="_blank" rel="noopener noreferrer">DAOVEZ Studio</a></strong>, diseño arquitecturas de automatización y entornos web de alto rendimiento para que los negocios operen de forma autónoma, segura y escalable. Priorizo la funcionalidad real y el retorno de inversión por encima del ruido tecnológico.</p>
-<p>Compagino esta práctica con mi formación en <strong><a class="about-degree-link" href="https://www.uned.es/universidad/inicio/en/estudios/grados/grado-en-ingenieria-en-inteligencia-artificial.html?idContenido=1" target="_blank" rel="noopener noreferrer">Ingeniería de la Inteligencia Artificial en la UNED</a></strong> y con la escritura de un <strong>libro fundamental</strong> sobre la automatización de procesos de negocio con IA, una hoja de ruta clara desde la estrategia hasta la implementación técnica.</p>
-<p class="about-personal">Fuera del código, los servidores y el diseño, mi proyecto más importante y mi mayor motor diario es ser el <strong>papi de Santi</strong>.</p>
+<p>Construyo puentes entre tecnología, inteligencia artificial y eficiencia empresarial. Desde <a href="https://daovezstudio.com" target="_blank" rel="noopener" class="text-white font-medium underline decoration-white/30 underline-offset-4 hover:decoration-white transition-colors">DAOVEZ Studio ↗</a>, diseño arquitecturas de automatización y entornos web de alto rendimiento para que los negocios operen de forma autónoma, segura y escalable. Priorizo la funcionalidad real y el retorno de inversión por encima del ruido tecnológico.</p>
+<p>Compagino esta práctica con mi formación en <strong class="text-white font-medium">Ingeniería de la Inteligencia Artificial en la UNED</strong>, la divulgación en mi plataforma educativa de automatización <a href="https://daovez.com" target="_blank" rel="noopener" class="text-white font-medium underline decoration-white/30 underline-offset-4 hover:decoration-white transition-colors">DAOVEZ.com ↗</a> y mi labor como autor bajo el sello <strong class="text-white font-medium">Ediciones DAOVEZ</strong>, donde escribo libros sobre <strong class="text-white font-medium">automatización e Inteligencia Artificial</strong> concebidos como una hoja de ruta clara desde la estrategia hasta la implementación técnica.</p>
+<p>Fuera del código, los servidores y el diseño, mi proyecto más importante y mi mayor motor diario es ser el <strong class="text-white font-medium">papi de Santi</strong>.</p>
 </div>
 {!isAbout && <a class="email" href="mailto:yo@daovez.com">yo@daovez.com</a>}
 </> : <>
@@ -34,15 +33,14 @@ const featured = [
 {isAbout ? <div class="about-areas" aria-label="Áreas de especialización">
 <article><span class="project-number">01</span><div><strong>Sistemas &amp; IA</strong><small>Orquestación de flujos, agentes autónomos, Python y optimización de procesos.</small></div></article>
 <article><span class="project-number">02</span><div><strong>Web &amp; Identidad</strong><small>Desarrollo web de alto rendimiento, diseño UI minimalista y dirección creativa.</small></div></article>
-<article><span class="project-number">03</span><div><strong>Academia &amp; Seguridad</strong><small>Ingeniería de IA (UNED), autor técnico y buenas prácticas en seguridad de sistemas.</small></div></article>
-<article class="about-stack"><span class="project-number">04</span><div><strong>Stack &amp; Entorno</strong><div class="stack-badges">
+<article><span class="project-number">03</span><div><strong>Academia, Libros &amp; Seguridad</strong><small>Ingeniería de IA (UNED), autor de libros sobre automatización e IA en Ediciones DAOVEZ y buenas prácticas en seguridad de sistemas.</small></div></article>
+<article class="about-stack"><span class="project-number">04</span><div><strong>Tecnologías &amp; Entorno</strong><div class="stack-badges">
 <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c-4.7 0-4.4 2-4.4 2v2.8h4.5v.9H5.8S3 8.8 3 13.5s2.4 4.5 2.4 4.5h1.5v-2.9s-.1-2.4 2.4-2.4h4.1s2.3 0 2.3-2.3V5.8S15.9 3.5 12 3.5Zm-2.5 1.6a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6Z"/><path d="M12 20.5c4.7 0 4.4-2 4.4-2v-2.8h-4.5v-.9h6.3s2.8.4 2.8-4.3-2.4-4.5-2.4-4.5h-1.5v2.9s.1 2.4-2.4 2.4h-4.1s-2.3 0-2.3 2.3v4.6s.3 2.3 3.7 2.3Zm2.5-1.6a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6Z"/></svg>Python</span>
-<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3.5 7.7v8.6L12 21l8.5-4.7V7.7L12 3Zm0 2.1 6.3 3.5L12 12.1 5.7 8.6 12 5.1Zm-6.4 5.2 5.3 3v5.1l-5.3-2.9v-5.2Zm7.4 8.1v-5.1l5.3-3v5.2L13 18.4Z"/></svg>IA &amp; LLMs</span>
+<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3.5 7.7v8.6L12 21l8.5-4.7V7.7L12 3Zm0 2.1 6.3 3.5L12 12.1 5.7 8.6 12 5.1Zm-6.4 5.2 5.3 3v5.1l-5.3-2.9v-5.2Zm7.4 8.1v-5.1l5.3-3v5.2L13 18.4Z"/></svg>Agentes IA &amp; LLMs</span>
 <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h14M5 12h14M5 17.5h14M8 4v5m8-1v5m-6 2v5"/></svg>n8n</span>
 <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 2.2L6 8.5v6l6 3.3 6-3.3v-6l-6-3.3Zm-3.8 4.5 3.8 2.1 3.8-2.1 1.3.8-5.1 2.8-5.1-2.8 1.3-.8Z"/></svg>Astro</span>
-<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v3H4V5Zm3 5h10v3H7v-3Zm-3 5h16v3H4v-3Z"/></svg>Tailwind</span>
+<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v3H4V5Zm3 5h10v3H7v-3Zm-3 5h16v3H4v-3Z"/></svg>Tailwind CSS</span>
 <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.9-3.3 7.7-8 9.3-4.7-1.6-8-4.4-8-9.3V6l8-3Zm0 2.2L6 7.4v4.3c0 3.5 2.2 5.6 6 7 3.8-1.4 6-3.5 6-7V7.4l-6-2.2Zm-1 3.3h2v4h-2v-4Zm0 5h2v2h-2v-2Z"/></svg>SecOps</span>
-<span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1.7" fill="currentColor"/><ellipse cx="12" cy="12" rx="8.5" ry="3.3"/><ellipse cx="12" cy="12" rx="8.5" ry="3.3" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="8.5" ry="3.3" transform="rotate(120 12 12)"/></svg>React</span>
 </div></div></article>
 </div> : <div class="latest-copy"><h2 class="works-title">Mis trabajos</h2><ol class="featured-projects">{featured.map((project, index) => <li><div class="featured-project"><span class="project-number">{String(index + 1).padStart(2, '0')}</span><span><strong>{project.title}</strong><small>{project.caption}</small></span></div></li>)}</ol></div>}
 </aside>
@@ -56,7 +54,6 @@ const featured = [
 .hero-copy h1 span { display:block; }
 .hero-copy h1 { max-width:8.5em; line-height:1.02; margin-bottom:0; }
 .hero-copy p { max-width:29rem; margin:18px 0 0; font-size:clamp(17px,1.35vw,24px); line-height:1.45; }
-.about-eyebrow { display:block; margin-bottom:18px; color:var(--accent); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.14em; }
 .hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin:24px 0 0; }
 .hero-actions a { display:inline-flex; align-items:center; justify-content:center; width:150px; height:48px; gap:18px; padding:8px 14px; border:1px solid rgb(210 215 220 / 15%); border-radius:999px; font-size:14px; color:var(--text); background:rgb(105 112 118 / 5%); backdrop-filter:blur(10px) saturate(.7); -webkit-backdrop-filter:blur(10px) saturate(.7); box-shadow:inset 0 1px rgb(255 255 255 / 3%); transition:color .2s,border-color .2s,background-color .2s,filter .2s; }
 .hero-actions .studio-button { padding:8px 14px; }
@@ -69,6 +66,8 @@ const featured = [
 .latest-work { z-index:20; left:80%; right:2%; justify-content:space-between; padding:30px 24px 28px 20px; overflow:hidden; background:rgb(105 112 118 / 3%)!important; border-left:1px solid rgb(210 215 220 / 8%); box-shadow:inset 1px 0 rgb(255 255 255 / 2%), inset 0 1px rgb(255 255 255 / 1.5%); backdrop-filter:blur(8px) saturate(.7); -webkit-backdrop-filter:blur(8px) saturate(.7); }
 .latest-work::before { content:""; display:block; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.05; background-image:radial-gradient(rgb(255 255 255 / 35%) .55px,transparent .7px),radial-gradient(rgb(0 0 0 / 35%) .55px,transparent .7px); background-position:0 0,3px 4px; background-size:5px 5px,7px 7px; }
 .latest-work > * { position:relative; z-index:1; }
+.home:not(.about-content-view) .latest-work { background:transparent!important; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
+.home:not(.about-content-view) .latest-work::before { display:none; }
 .hero-social { position:absolute; left:47%; top:51%; transform:translate(-50%,-50%); z-index:20; }
 .hero-social :global(.social) { flex-direction:column; gap:16px; }
 .hero-social :global(.social svg) { width:18px; height:18px; }
@@ -88,55 +87,81 @@ const featured = [
 .about-content-view .about-bio p { max-width:31rem; margin:0; color:var(--muted); font-size:clamp(12px,1.05vw,16px); line-height:1.42; }
 .about-content-view .about-bio p + p { margin-top:10px; }
 .about-content-view .about-bio strong { color:var(--text); }
-.about-degree-link { color:inherit; text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:3px; transition:color .2s; }
-.about-degree-link:hover { color:var(--accent); }
-.about-studio-link { color:inherit; text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:3px; transition:color .2s; }
-.about-studio-link:hover { color:var(--accent); }
-.about-content-view .about-personal { color:var(--text)!important; }
+.about-bio .text-white { color:#fff; font-weight:500; }
+.about-bio a { text-decoration:underline; text-decoration-color:rgb(255 255 255 / 30%); text-underline-offset:4px; transition:text-decoration-color .2s; }
+.about-bio a:hover,.about-bio a:focus-visible { text-decoration-color:#fff; }
 .about-content-view .hero-copy .email { margin-top:18px; }
 .about-content-view .hero-copy { top:0; padding-top:clamp(65px, 5vw, 80px); text-align:left; }
 .about-content-view .hero-copy h1 { max-width:100%; margin-left:0; margin-right:0; margin-bottom:0; font-size:clamp(34px,3.15vw,56px); line-height:1.04; letter-spacing:-.045em; }
 .about-content-view .about-bio p { margin-left:0; margin-right:0; font-size:clamp(12px,1vw,15px); line-height:1.52; }
 .about-content-view .about-bio { text-align:left; }
 .about-areas { display:flex; flex-direction:column; gap:0; }
-.about-areas article { display:flex; min-width:0; gap:14px; padding:18px 0; border-bottom:1px solid rgb(255 255 255 / 10%); transition:border-color .2s,transform .2s; }
+.about-areas article { display:flex; min-width:0; gap:14px; padding:18px 0; border-bottom:1px solid rgb(255 255 255 / 10%); }
 .about-areas article:first-child { border-top:1px solid rgb(255 255 255 / 10%); }
-.about-areas article:hover { border-color:rgb(255 255 255 / 22%); transform:translateX(3px); }
 .about-areas article > div { min-width:0; }
 .about-areas strong { display:block; color:var(--text); font-size:14px; font-weight:500; line-height:1.4; }
 .about-areas small { display:block; max-width:24ch; margin-top:6px; color:var(--muted); font-size:11px; line-height:1.5; overflow-wrap:anywhere; }
 .stack-badges { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 14px; max-width:100%; margin-top:10px; }
 .stack-badges span { display:flex; min-width:0; min-height:24px; align-items:center; gap:7px; padding:3px 0; color:#fff; font-size:10px; line-height:1.25; overflow-wrap:anywhere; }
 .stack-badges svg { flex:0 0 14px; width:14px; height:14px; fill:#fff; opacity:.9; }
-.stack-badges span:nth-child(3) svg,.stack-badges span:nth-child(5) svg,.stack-badges span:nth-child(7) svg { fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.5; }
+.stack-badges span:nth-child(3) svg,.stack-badges span:nth-child(5) svg { fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.5; }
 @media(min-width:901px) {
 .hero-portrait { left:auto; right:20%; width:35%; height:100%; max-width:none; object-fit:cover; object-position:center top; top:0; bottom:0; }
 }
-@media(max-width:1000px) and (min-width:901px) {
-.hero-copy { top:15%; width:44%; }
-.hero-copy h1 { font-size:46px; }
-.latest-work { left:77%; right:2%; padding-left:14px; }
-.hero-portrait { right:23%; width:33%; }
-.hero-actions { gap:8px; } .hero-actions a { padding:9px 12px; font-size:13px; }
-.about-content-view .about-bio p { font-size:13px; }
-.about-content-view .hero-copy h1 { font-size:clamp(32px,4.2vw,46px); }
+@media(min-width:1440px) {
+.about-content-view { display:grid; grid-template-columns:4.3% minmax(0,43fr) minmax(0,32.7fr) minmax(0,18fr) 2%; height:auto; min-height:inherit; }
+.about-content-view .hero-copy { grid-column:2; position:static; width:auto; max-width:none; }
+.about-content-view .latest-work { grid-column:4; position:relative; inset:auto; min-width:0; }
 }
-@media(max-width:900px) {
-.home { padding-top:40px; }
-.hero-copy { position:relative; top:auto; left:auto; width:100%; }
-.about-content-view .hero-copy { top:auto; padding:0 24px; }
-.hero-copy h1 { font-size:clamp(38px,10vw,68px); }
-.about-content-view .hero-copy h1 { font-size:clamp(32px,8.5vw,48px); }
-.hero-copy p { font-size:18px; max-width:32em; }
-.hero-copy .email { margin-top:20px; }
-.hero-actions .studio-button { padding:6px 12px; }
-.studio-logo { width:120px; max-height:28px; }
-.hero-portrait { position:relative; order:1; left:auto; bottom:auto; width:80%; max-width:390px; margin:12px auto 0; clip-path:none; }
-.hero-copy { order:0; } .latest-work { order:2; position:relative; left:auto; right:auto; padding:24px; border-left:0; border-top:1px solid var(--line); gap:22px; }
-.latest-copy { margin:0; } .featured-project { padding:14px 0; } .featured-projects strong { font-size:16px; } .featured-projects small { font-size:13px; }
-.hero-social { position:relative; order:0; top:auto; left:auto; transform:none; padding:20px 24px 0; }
-.hero-social :global(.social) { flex-direction:row; justify-content:center; }
+
+/* Content-led layout below desktop. */
+@media(max-width:1439px) {
+.home { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.9fr) minmax(0,.8fr); grid-template-areas:"copy portrait works" "social portrait works"; align-items:center; height:auto; min-height:0; padding:clamp(24px,3vw,44px); gap:16px clamp(16px,2vw,28px); }
+.hero-copy,.about-content-view .hero-copy { grid-area:copy; position:static; width:auto; max-width:none; padding:0; }
+.hero-copy h1 { font-size:clamp(42px,4.5vw,68px); }
+.hero-copy p { font-size:clamp(16px,1.5vw,20px); }
+.hero-portrait { grid-area:portrait; position:static; width:100%; height:auto; max-width:390px; margin:0; align-self:end; justify-self:center; object-fit:contain; clip-path:none; }
+.hero-social { grid-area:social; position:static; transform:none; padding:0; align-self:start; }
+.hero-social :global(.social) { flex-direction:row; justify-content:flex-start; gap:12px; }
+.latest-work { grid-area:works; position:relative; inset:auto; align-self:stretch; min-width:0; padding:0 0 0 clamp(16px,2vw,28px); }
+.latest-copy { margin:0; }
+.featured-projects small { max-width:none; }
+.hero-actions { gap:10px; }
+.hero-actions a { width:auto; min-width:0; flex:1 1 130px; max-width:170px; }
+.about-content-view { grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); grid-template-areas:"copy works"; align-items:start; }
+.about-content-view .hero-copy h1 { font-size:clamp(32px,3.4vw,48px); }
 .about-content-view .about-bio p { font-size:15px; line-height:1.55; }
+.about-content-view .about-bio { padding-bottom:0; }
+}
+@media(max-width:1023px) {
+.home { grid-template-columns:minmax(0,1fr); grid-template-areas:"copy" "social" "portrait" "works"; }
+.hero-copy h1 { font-size:clamp(38px,5.5vw,56px); }
+.hero-social :global(.social) { justify-content:center; }
+.hero-copy p { font-size:18px; }
+.latest-work { border-left:0; border-top:1px solid var(--line); padding:24px 0 0; }
+.works-title { margin-bottom:12px; }
+.featured-projects { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.featured-projects strong { font-size:16px; }
+.featured-projects small { font-size:13px; }
+.about-content-view { grid-template-areas:"copy" "works"; }
+.about-content-view .hero-copy h1 { max-width:24ch; }
+.about-content-view .about-bio p { max-width:none; }
+.about-areas { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 24px; }
+.about-areas article:first-child { border-top:0; }
+.about-areas small { max-width:none; }
+}
+@media(max-width:767px) {
+.home { grid-template-columns:minmax(0,1fr); grid-template-areas:"copy" "social" "portrait" "works"; padding:clamp(20px,5vw,32px); gap:20px; }
+.hero-copy h1 { font-size:clamp(36px,9.5vw,64px); }
+.hero-copy p { font-size:clamp(16px,4.3vw,18px); }
+.hero-actions a { flex:1 1 110px; max-width:180px; padding-inline:10px; }
+.hero-portrait { width:80%; max-width:390px; }
+.hero-social :global(.social) { justify-content:center; }
+.featured-projects { grid-template-columns:minmax(0,1fr); gap:0; }
+.featured-project { padding:16px 0; }
+.about-content-view { grid-template-areas:"copy" "works"; }
+.about-content-view .hero-copy h1 { font-size:clamp(30px,8vw,46px); }
+.about-areas { grid-template-columns:minmax(0,1fr); }
 }
 @media(prefers-reduced-motion:reduce) { .hero-actions a,.hero-copy .email,.hero-social :global(.social a) { transition:none; } }
 </style>

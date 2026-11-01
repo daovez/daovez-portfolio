@@ -7,8 +7,7 @@ const [latest, ...previous] = await getNotes();
   <div class="blog">
     <header class="blog-heading">
       <a class="back" href="/">← Volver</a>
-      <p class="blog-eyebrow">BLOG // DAOVEZ</p>
-      <h1>Blog</h1>
+      <h1>blog // daovez</h1>
       <p>Notas sobre desarrollo web, automatización e IA</p>
       <nav class="filters" aria-label="Filtrar notas">
         <button class="filter-active" type="button" data-note-filter="Todos" aria-pressed="true">Todos</button>
@@ -19,7 +18,7 @@ const [latest, ...previous] = await getNotes();
       </nav>
     </header>
     {latest && <article class="latest" data-note-category={latest.data.category}>
-      <div class="latest-meta"><span>[ DESTACADO // ARQUITECTURA ]</span><span>{latest.data.category}</span></div>
+      <div class="latest-meta"><span>DESTACADO</span><span>{latest.data.category}</span></div>
       <h2><a href={`/blog/${latest.id}/`}>{latest.data.title}</a></h2>
       <p>{latest.data.description}</p>
       <div class="note-meta"><time datetime={latest.data.date.toISOString()}>{formatDate(latest.data.date)}</time><span>{latest.data.readTime} de lectura</span><a class="accent" href={`/blog/${latest.id}/`}>Leer nota <span aria-hidden="true">→</span></a></div>
@@ -28,56 +27,57 @@ const [latest, ...previous] = await getNotes();
       <div class="index-heading"><span id="notes-title">Índice técnico</span><span>{previous.length} notas</span></div>
       <ul class="previous" aria-label="Notas anteriores">
         {previous.map((note, index) => <li data-note-category={note.data.category}>
-          <span class="note-number">{String(index + 1).padStart(2, '0')}</span>
-          <div class="note-title"><a href={`/blog/${note.id}/`}>{note.data.title}</a><span class="category">{note.data.category}</span></div>
-          <div class="note-details"><time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time><span>{note.data.readTime}</span></div>
+          <a class="note-link" href={`/blog/${note.id}/`}>
+            <span class="note-number">{String(index + 1).padStart(2, '0')}</span>
+            <div class="note-title"><span class="category">{note.data.category}</span><h3>{note.data.title}</h3><div class="note-details"><time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time><span>{note.data.readTime} de lectura</span></div></div>
+            <span class="note-arrow" aria-hidden="true">↗</span>
+          </a>
         </li>)}
       </ul>
     </section>}
   </div>
 </Layout>
 <style>
-  .blog { position:relative; width:100%; max-width:none; min-height:100%; margin:0; padding:64px clamp(24px,5vw,72px) 72px; overflow:hidden; overflow-wrap:anywhere; background:rgb(105 112 118 / 3%); border:1px solid rgb(210 215 220 / 8%); border-radius:16px; box-shadow:inset 1px 0 rgb(255 255 255 / 2%), inset 0 1px rgb(255 255 255 / 1.5%); backdrop-filter:blur(8px) saturate(.7); -webkit-backdrop-filter:blur(8px) saturate(.7); }
-  .blog::before { content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.05; background-image:radial-gradient(rgb(255 255 255 / 35%) .55px,transparent .7px),radial-gradient(rgb(0 0 0 / 35%) .55px,transparent .7px); background-position:0 0,3px 4px; background-size:5px 5px,7px 7px; }
-  .blog > * { position:relative; z-index:1; }
-  .blog-heading { margin-bottom: 36px; }
-  .back { display: inline-flex; margin-bottom: 28px; color: var(--muted); font-size: 13px; transition: color .2s; }
+  .blog { width:100%; margin:0; padding:12px 0 48px; overflow-wrap:anywhere; }
+  .blog-heading { margin-bottom: 24px; }
+  .back { display: inline-flex; margin-bottom: 12px; color: var(--muted); font-size: 13px; transition: color .2s; }
   .back:hover { color: var(--text); }
-  .blog-eyebrow { margin: 0 0 14px; color: var(--accent); font: 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing: .16em; }
   h1 { margin: 0 0 10px; color: var(--text); font-size: clamp(40px, 5vw, 64px); letter-spacing: -.055em; line-height: 1; }
-  .blog-heading > p:not(.blog-eyebrow) { margin: 0; color: var(--muted); font-size: 17px; }
-  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-  .filters button { min-height: 36px; padding: 7px 14px; border: 1px solid rgb(255 255 255 / 10%); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; transition: border-color .2s, color .2s, background-color .2s; }
-  .filters button:hover, .filters button:focus-visible, .filters .filter-active { border-color: rgb(255 255 255 / 25%); background: rgb(255 255 255 / 5%); color: var(--text); }
-  .latest { padding: 30px 32px 26px; border: 1px solid rgb(255 255 255 / 10%); border-radius: 16px; background: rgb(23 25 27 / 40%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: border-color .2s; }
-  .latest:hover { border-color: rgb(255 255 255 / 25%); }
+  .blog-heading > p { margin: 0; color: var(--muted); font-size: 17px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .filters button { min-height: 44px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; transition: border-color .2s, color .2s, background-color .2s; }
+  .filters button:hover, .filters button:focus-visible, .filters .filter-active { border-color: var(--accent); background: var(--panel); color: var(--text); }
+  .latest { padding:30px 0; border-block:1px solid var(--line); }
   .latest-meta, .note-meta, .index-heading, .note-details { display: flex; align-items: center; gap: 16px; color: var(--muted); font-size: 12px; }
   .latest-meta { justify-content: space-between; color: var(--accent); font: 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing: .08em; }
-  .latest h2 { max-width: 700px; margin: 22px 0 10px; font-size: clamp(26px, 3.2vw, 42px); letter-spacing: -.04em; line-height: 1.1; }
+  .latest h2 { max-width: 700px; margin: 16px 0 12px; font-size: clamp(26px, 3.2vw, 42px); letter-spacing: -.04em; line-height: 1.1; }
   .latest h2 a:hover { color: var(--text); }
   .latest > p { max-width: 640px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; }
-  .note-meta { margin-top: 26px; }
+  .note-meta { margin-top: 16px; }
   time { color: var(--muted); font: 12px/1.5 'Space Grotesk', sans-serif; }
-  .note-meta a { margin-left: auto; }
-  .notes-index { margin-top: 48px; }
-  .index-heading { justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid rgb(255 255 255 / 10%); color: var(--text); font: 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing: .12em; text-transform: uppercase; }
+  .note-meta a { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin-left:auto; }
+  .notes-index { margin-top: 28px; }
+  .index-heading { justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--text); font: 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing: .12em; text-transform: uppercase; }
   .index-heading span:last-child { color: var(--muted); }
   .previous { list-style: none; margin: 0; padding: 0; }
-  .previous li { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 18px; padding: 20px 0; border-bottom: 1px solid rgb(255 255 255 / 10%); transition: border-color .2s, transform .2s; }
-  .previous li:hover { border-color: rgb(255 255 255 / 22%); transform: translateX(3px); }
-  .note-number { color: var(--accent); font: 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
-  .note-title { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .note-title a { color: var(--text); font-size: 16px; }
-  .category { padding: 4px 9px; border: 1px solid rgb(255 255 255 / 10%); border-radius: 999px; color: var(--muted); font-size: 10px; }
-  .note-details { justify-content: flex-end; white-space: nowrap; }
+
+  .previous li { border-bottom:1px solid var(--line); }
+  .note-link { display:grid; grid-template-columns:28px minmax(0,1fr) 24px; align-items:start; gap:16px; padding:20px 0; }
+  .note-number { padding-top:3px; color:var(--accent); font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .note-title { min-width:0; }
+  .category { display:block; margin-bottom:6px; color:var(--accent); font:10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; }
+  .note-title h3 { margin:0; color:var(--text); font-size:clamp(18px,2.2vw,22px); font-weight:500; line-height:1.3; letter-spacing:-.025em; }
+  .note-details { flex-wrap:wrap; gap:4px 14px; margin-top:8px; font-size:11px; }
+  .note-arrow { align-self:center; color:var(--accent); font-size:22px; line-height:1; text-align:center; }
+  .note-link:hover h3 { text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
+  .previous li[hidden], .latest[hidden] { display:none; }
   @media (max-width: 650px) {
-    .blog { padding: 36px 20px 48px; }
-    .latest { padding: 22px 20px; }
+    .blog { padding: 10px 0 48px; }
+    .latest { padding: 24px 0; }
     .latest-meta { align-items: flex-start; flex-direction: column; gap: 6px; }
     .note-meta { align-items: flex-start; flex-wrap: wrap; }
     .note-meta a { width: 100%; margin-left: 0; }
-    .previous li { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; }
-    .note-details { grid-column: 2; justify-content: flex-start; }
+    .note-link { grid-template-columns:22px minmax(0,1fr) 20px; gap:10px; padding:18px 0; }
   }
 </style>
 <script>
